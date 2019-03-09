@@ -1,0 +1,75 @@
+version: 2
+jobs:
+  check-build:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: add-peer-deps
+          command: npm run precheck
+      - run:
+          name: install-npm-deps
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: check
+          command: npm run lint
+      - run:
+          name: check-coverage
+          command: npm run cover:check
+      - run:
+          name: publish-coverage
+          command: npm run codecov
+      - store_artifacts:
+          path: coverage
+          prefix: code-coverage
+  publish-build:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: clean-up
+          command: npm run clean
+      - run:
+          name: npm-auth
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
+      - run:
+          name: npm-publish
+          command: npm publish
+workflows:
+  version: 2
+  check-pr:
+    jobs:
+      - check-build:
+          filters:
+            branches:
+              ignore: master
+  publish-package:
+    jobs:
+      - check-build:
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/
+      - publish-build:
+          requires:
+            - check-build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
