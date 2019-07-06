@@ -58,3 +58,49 @@ class MyComponent extends Component {
 ```
 
 I guess, it looks nicer =)
+
+### Additional arguments for renderProp function
+
+Let's imagine we already have a component using react context consumers and custom render prop with additional arguments like this one:
+
+```js
+class CustomComponent extends React.Component {
+    ...
+
+    renderComponent(someValue) {
+        return (
+            <ThemeContext.Consumer>
+                {theme => (
+                    <LocaleContext.Consumer>
+                        {
+                            locale => this.renderComponentWithContext(theme, locale, someValue)
+                        }
+                    </LocaleContext.Consumer>
+                )}
+            </ThemeContext.Consumer>
+        )
+    }
+
+    renderComponentWithContext(theme, locale, someValue) {
+        ...
+    }
+}
+```
+
+You can now just pass all needed additional arguments using `args` prop:
+
+```js
+class CustomComponent extends React.Component {
+    ...
+
+    renderComponent(someValue) {
+        return (
+            <ContextConsumer contexts={[ ThemeContext, LocaleContext ]} args={[ someValue ]}>
+                {this.renderComponentWithContext}
+            </ContextConsumer>
+        )
+    }
+
+    ...
+}
+```

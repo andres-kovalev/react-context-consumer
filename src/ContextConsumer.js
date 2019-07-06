@@ -2,10 +2,11 @@ const React = require('react');
 
 const { useContext } = React;
 
-const ContextConsumer = ({ contexts, children: renderProp }) => renderProp(
+const ContextConsumer = ({ contexts, args = [], children: renderProp }) => renderProp(
     ...contexts.map(
         context => useContext(context)
-    )
+    ),
+    ...args
 );
 
 module.exports = ContextConsumer;
