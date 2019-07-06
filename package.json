@@ -35,8 +35,7 @@
     },
     "homepage": "https://github.com/andres-kovalev/react-context-consumer#readme",
     "peerDependencies": {
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0"
+        "react": "^16.8.0"
     },
     "devDependencies": {
         "codecov": "^3.2.0",
@@ -50,16 +49,8 @@
         "enzyme-adapter-react-16": "^1.14.0",
         "eslint-plugin-jsx-a11y": "^6.2.3",
         "eslint-plugin-react": "^7.14.2",
-        "jest": "^24.8.0"
-    },
-    "nyc": {
-        "include": [
-            "src/**/*.js"
-        ],
-        "exclude": [
-            "src/**/*.spec.js"
-        ],
-        "all": true
+        "jest": "^24.8.0",
+        "react-dom": "^16.8.0"
     },
     "husky": {
         "hooks": {
