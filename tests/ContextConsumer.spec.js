@@ -10,7 +10,9 @@ describe('ContextConsumer', () => {
     it('should call renderProp with all context values', () => {
         const value1 = { value: 1 };
         const value2 = { value: 2 };
-        const renderProp = jest.fn();
+        const renderProp = jest.fn(
+            () => <div />
+        );
 
         mount(
             <Context1.Provider value={ value1 }>

@@ -1,13 +1,11 @@
 const React = require('react');
 
-const ContextConsumer = ({ contexts, children: renderProp }) => {
-    const render = contexts.reduce(
-        (reduced, { Consumer }) => (...args) => React.createElement(Consumer, {
-            children: arg => reduced(arg, ...args)
-        }), renderProp
-    );
+const { useContext } = React;
 
-    return render();
-};
+const ContextConsumer = ({ contexts, children: renderProp }) => renderProp(
+    ...contexts.map(
+        context => useContext(context)
+    )
+);
 
 module.exports = ContextConsumer;
