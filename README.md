@@ -10,6 +10,20 @@
 
 Small and lightweight context consumer for your class-components
 
+## Installation
+
+As any other npm package `react-context-consumer` can be added to your project by following command:
+
+```bash
+npm i -S react-context-consumer
+```
+
+It requires any version of [react](https://www.npmjs.com/package/react) with new context API support as peer dependency, so it should be installed as well.
+
+```bash
+npm i -S react
+```
+
 ## Overview
 
 With new [Context API](https://reactjs.org/docs/context.html#api) to consume several contexts we need to put several context consumers in our component (one for each context):
@@ -47,11 +61,11 @@ import ContextConsumer from 'react-context-consumer';
 class MyComponent extends Component {
     render() {
         return (
-            <ReactContextConsumer contexts={[ ThemeContext, LocaleContext, StorageContext ]}>
+            <ContextConsumer contexts={[ ThemeContext, LocaleContext, StorageContext ]}>
                 {(theme, locale, storage) => {
                     // render component using theme, locale and storage
                 }}
-            </ReactContextConsumer>
+            </ContextConsumer>
         );
     }
 }

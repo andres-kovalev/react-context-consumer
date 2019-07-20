@@ -32,6 +32,7 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: code-coverage
+          when: always
   publish-build:
     docker:
       - image: circleci/node:8.9.4
