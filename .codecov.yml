@@ -1,0 +1,14 @@
+comment:
+  layout: "header, diff, reach"
+  behavior: spammy
+  require_changes: no
+coverage:
+  status:
+    patch:
+      default:
+        target: 70
+        threshold: 15
+    project:
+      default:
+        target: 70
+        threshold: 15

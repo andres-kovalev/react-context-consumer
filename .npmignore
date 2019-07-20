@@ -6,6 +6,7 @@ tools
 coverage
 .babelrc
 .npmrc
+.codecov.yml
 .eslintcache
 .editorconfig
 .eslintrc

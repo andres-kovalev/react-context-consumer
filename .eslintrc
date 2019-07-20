@@ -37,7 +37,9 @@
         "react/no-array-index-key": "error",
         "react/no-direct-mutation-state": "error",
         "react/prop-types": "error",
-        "react/jsx-no-bind": "error",
+        "react/jsx-no-bind": [ "error", {
+            "allowArrowFunctions": true
+        }],
         "react/jsx-no-target-blank": "error"
     },
     "extends": [
