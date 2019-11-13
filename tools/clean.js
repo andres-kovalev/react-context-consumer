@@ -14,7 +14,8 @@ const allowedKeys = [
     "license",
     "bugs",
     "homepage",
-    "dependencies"
+    "dependencies",
+    "engines"
 ];
 
 Object.keys(package).forEach(
