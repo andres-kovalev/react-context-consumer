@@ -10,6 +10,8 @@
 
 Small and lightweight context consumer for your class-components
 
+[Demo](https://codesandbox.io/s/react-context-consumer-playground-ctnrq)
+
 ## Installation
 
 As any other npm package `react-context-consumer` can be added to your project by following command:
